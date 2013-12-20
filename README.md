@@ -1,4 +1,4 @@
-CFstats.py
+RaxStats
 ==========
 
 Gather statistical information about various Cloud Files API response times
