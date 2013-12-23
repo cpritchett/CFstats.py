@@ -44,8 +44,7 @@ MAX_TIME = 0.2
 #Set MAX_REPS to limit the number of tests to the assigned value.
 MAX_REPS = 25
 
-USERNAME = 'YOURUSERNAME'
-APIKEY = 'YOURAPIKEY'
+creds = os.path.expanduser(".RaxStatsCredentials")
 
 #Set the target region that contains your cloud file(s)
 REGION = 'DFW'
@@ -159,8 +158,9 @@ try:
         try:
             pyrax.set_setting("identity_type", "rackspace")
             pyrax.set_default_region(REGION)
-            pyrax.set_credentials(USERNAME, APIKEY)
+            pyrax.set_credential_file(creds)
             TOKEN = pyrax.identity.token
+            USERNAME = pyrax.identity.username
         except Exception as e:
             if ticks == max_ticks:
                 print "\r\n\r%s\n" % e
