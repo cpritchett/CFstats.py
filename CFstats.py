@@ -44,7 +44,14 @@ MAX_TIME = 0.2
 #Set MAX_REPS to limit the number of tests to the assigned value.
 MAX_REPS = 25
 
-creds = os.path.expanduser(".RaxStatsCredentials")
+#Look for the credentials file and complain if it doesn't exist
+#Support for command line arguments needs to be added
+try:
+    with open('.RaxStatsCredentials'):
+        creds = os.path.expanduser(".RaxStatsCredentials")
+except IOError:
+    print '\nNo .RaxStatsCredentials File Found'
+    sys.exit()
 
 #Set the target region that contains your cloud file(s)
 REGION = 'DFW'
